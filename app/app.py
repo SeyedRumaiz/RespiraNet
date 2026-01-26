@@ -14,11 +14,29 @@ if "predicted" not in st.session_state:
     st.session_state.location = None
 
 if not st.session_state.predicted:
-    st.markdown("<h1>RespiraNet</h1>", unsafe_allow_html=True)
+    st.markdown("<h1 class='brand-title'>RespiraNet</h1>", unsafe_allow_html=True)
 
     st.markdown("<h1>AI-Based Pneumonia Detection System</h1>", unsafe_allow_html=True)
 
     st.markdown("<p>Next-generation diagnostic framework</p>", unsafe_allow_html=True)
+
+    # Main flow
+    st.markdown("<h2>How It Works</h2>", unsafe_allow_html=True)
+
+    s1, a1, s2, a2, s3 = st.columns([2,2,2,2,2])
+
+    with s1:
+        st.markdown("<p>Upload</p>", unsafe_allow_html=True)
+    with a1:
+        st.markdown("────➤", unsafe_allow_html=True)
+    with s2:
+        st.markdown("<p>Analyze</p>", unsafe_allow_html=True)
+    with a2:
+        st.markdown("────➤", unsafe_allow_html=True)
+    with s3:
+        st.markdown("<p>Result</p>", unsafe_allow_html=True)
+
+
 
 else:
     pass    # Results page
@@ -34,3 +52,10 @@ def load_css(file):
     """
     with open(file) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+
+def main():
+    load_css("styles.css")
+
+if __name__ == "__main__":
+    main()
