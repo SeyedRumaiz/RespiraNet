@@ -10,8 +10,8 @@
 }
 
 .section-gap {
-    margin-top: 100px;
-    margin-bottom: 50px;
+    margin-top: 230px;
+    margin-bottom: 100px;
 }
 
 .stMarkdown h1.brand-title {
@@ -24,6 +24,7 @@
     text-align: center;
     font-size: 2.5rem;
     font-weight: 800;
+    color: #FFFFFF;
 }
 
 .stMarkdown p.intro-text {
@@ -32,3 +33,32 @@
     color: #8b949e;
 }
 
+.stMarkdown h2.how-it-works {
+    text-align: center;
+}
+
+.step-node {
+    border: 3px solid #00D4FF;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    background: #161b22;
+    margin: auto;
+    z-index: 2;
+    margin-top: 90px;
+}
+
+.connector {
+    text-align: center;
+    font-size: 50px;
+    color: #00D4FF;
+    width: 120%;
+    margin-left: -10%;
+    margin-top: 90px;
+    animation: pulse 2s infinite;
+}

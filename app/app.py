@@ -39,23 +39,26 @@ if not st.session_state.predicted:
 
     st.markdown("<p class='intro-text'>Next-generation diagnostic framework</p>", unsafe_allow_html=True)
 
+    st.markdown("<div class='section-gap'></div>", unsafe_allow_html=True)
 
     # How it works section
-    st.markdown("<h2>How It Works</h2>", unsafe_allow_html=True)
+    st.markdown("<h2 class='how-it-works'>How It Works</h2>", unsafe_allow_html=True)
 
     s1, a1, s2, a2, s3 = st.columns([2,2,2,2,2])
 
     with s1:
-        st.markdown("<p>Upload</p>", unsafe_allow_html=True)
+        st.markdown("<div class='step-node'>1</div><p><b>Upload</b></p>", unsafe_allow_html=True)
     with a1:
-        st.markdown("────➤", unsafe_allow_html=True)
+        st.markdown("<div class='connector'>────➤</div>", unsafe_allow_html=True)
     with s2:
-        st.markdown("<p>Analyze</p>", unsafe_allow_html=True)
+        st.markdown("<div class='step-node'>2</div><p><b>Analyze</b></p>", unsafe_allow_html=True)
     with a2:
-        st.markdown("────➤", unsafe_allow_html=True)
+        st.markdown("<div class='connector'>────➤</div>", unsafe_allow_html=True)
     with s3:
-        st.markdown("<p>Result</p>", unsafe_allow_html=True)
+        st.markdown("<div class='step-node'>3</div><p><b>Results</b></p>", unsafe_allow_html=True)
 
+
+    st.markdown("<div class='section-gap'></div>", unsafe_allow_html=True)
 
     # Upload file section
     uploaded_file = st.file_uploader(
@@ -65,7 +68,7 @@ if not st.session_state.predicted:
 
     # If user uploaded the file
     if uploaded_file:
-        st.image(uploaded_file, width=550)
+        st.image(uploaded_file, use_column_width=True)
         
         if st.button("PREDICT"):
             with st.spinner("Analyzing scan..."):
