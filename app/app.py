@@ -14,13 +14,16 @@ if "predicted" not in st.session_state:
     st.session_state.location = None
 
 if not st.session_state.predicted:
+
+    # Introduction section
     st.markdown("<h1 class='brand-title'>RespiraNet</h1>", unsafe_allow_html=True)
 
     st.markdown("<h1>AI-Based Pneumonia Detection System</h1>", unsafe_allow_html=True)
 
     st.markdown("<p>Next-generation diagnostic framework</p>", unsafe_allow_html=True)
 
-    # Main flow
+
+    # How it works section
     st.markdown("<h2>How It Works</h2>", unsafe_allow_html=True)
 
     s1, a1, s2, a2, s3 = st.columns([2,2,2,2,2])
@@ -36,6 +39,17 @@ if not st.session_state.predicted:
     with s3:
         st.markdown("<p>Result</p>", unsafe_allow_html=True)
 
+
+    # Upload file section
+    uploaded_file = st.file_uploader(
+        "Upload Chest X-ray",
+        type = ['jpg', 'png', 'jpeg']
+    )
+
+    # If user uploaded the file
+    if uploaded_file:
+        st.image(uploaded_file, width=550)
+        pass
 
 
 else:
