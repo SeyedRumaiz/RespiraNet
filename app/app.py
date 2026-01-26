@@ -14,7 +14,11 @@ if "predicted" not in st.session_state:
     st.session_state.location = None
 
 if not st.session_state.predicted:
-    pass    # Navigation page
+    st.markdown("<h1>RespiraNet</h1>", unsafe_allow_html=True)
+
+    st.markdown("<h1>AI-Based Pneumonia Detection System</h1>", unsafe_allow_html=True)
+
+    st.markdown("<p>Next-generation diagnostic framework</p>", unsafe_allow_html=True)
 
 else:
     pass    # Results page
