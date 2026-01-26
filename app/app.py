@@ -25,10 +25,9 @@ if "predicted" not in st.session_state:
     st.session_state.predicted = False
     st.session_state.uploaded_file = False
     st.session_state.result = None
-    st.session_state.confidence = None
-    st.session_state.accuracy = None
-    st.session_state.location = None
+    st.session_state.confidence = 0
 
+# Landing Page
 if not st.session_state.predicted:
 
     st.markdown("<div class='spacer'></div>", unsafe_allow_html=True)
@@ -76,8 +75,6 @@ if not st.session_state.predicted:
             st.markdown("### Performance")
             st.image("newplot.png")
             
-
-        st.progress(99)
         st.markdown("</div>", unsafe_allow_html=True)
     st.markdown("</div>", unsafe_allow_html=True)
 
@@ -103,4 +100,37 @@ if not st.session_state.predicted:
                     st.rerun()
 
 else:
-    pass    # Results page
+    st.markdown("<div class='spacer'></div>", unsafe_allow_html=True)
+    st.markdown("<h1 style='text-align:center; color:#00D4FF;'>Diagnostic Report</h1>", unsafe_allow_html=True)
+    st.markdown("<h2 style='text-align:center;'>Analysis Results</h2>", unsafe_allow_html=True)
+    st.divider()
+
+    col1, col2 = st.columns([1,1])
+    with col1:
+        st.markdown("<div class='result-card'>", unsafe_allow_html=True)
+        st.markdown("### Primary Classification")
+        st.markdown(f"<h1 style='color:#00E676; font-size:4rem;'>{st.session_state.result}</h1>", unsafe_allow_html=True)
+        st.write("Scan analyzed by RespiraNet.")
+        st.markdown("</div>", unsafe_allow_html=True)
+    with col2:
+        st.markdown("<div class='result-card'>", unsafe_allow_html=True)
+        st.markdown("### Confidence Score")
+        confidence = st.session_state.confidence * 100
+        st.markdown(f"<h1 style='color:#00D4FF; font-size:4rem;'>{confidence:.2f}%", unsafe_allow_html=True)
+        st.progress(confidence/100)
+        st.write("The model is highly confident in this classification")
+        st.markdown("</div>", unsafe_allow_html=True)
+
+    with st.container():
+        left, _ = st.columns([1,5])
+        with left:
+            if st.button("← New Scan"):
+                st.session_state.predicted = False
+                st.session_state.uploaded_file = None
+                st.session_state.result = None
+                st.session_state.confidence = 0
+                st.rerun()
+
+st.markdown("<div class='section-gap'></div>", unsafe_allow_html=True)
+st.markdown("<hr style='border-color:#30363d'>", unsafe_allow_html=True)
+st.markdown("<p style='text-align:center; color:#555;'>RespiraNet © 2026</p>", unsafe_allow_html=True)
