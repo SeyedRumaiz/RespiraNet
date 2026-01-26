@@ -1,5 +1,7 @@
 import streamlit as st
+import time
 from model import classify
+from PIL import Image
 
 # Setup config
 st.set_page_config(page_title='RespiraNet', layout='wide')  # page_icon=""
@@ -49,8 +51,17 @@ if not st.session_state.predicted:
     # If user uploaded the file
     if uploaded_file:
         st.image(uploaded_file, width=550)
-        pass
+        
+        if st.button("PREDICT"):
+            with st.spinner("Analyzing scan..."):
+                time.sleep(2)
+                img = Image.open(uploaded_file).convert("RGB")
+                result, confidence = classify(img)
 
+                st.session_state.result = result
+                st.session_state.confidence = confidence
+                st.session_state.predicted = True
+                st.rerun()
 
 else:
     pass    # Results page
