@@ -61,26 +61,46 @@ if not st.session_state.predicted:
 
     st.markdown("<div class='section-gap'></div>", unsafe_allow_html=True)
 
+    # Model overview section
+
+    st.markdown("<div style='max-width:1000px; margin: auto;'>", unsafe_allow_html=True)
+    with st.container():
+        st.markdown("<div class='result-card'>", unsafe_allow_html=True)
+        c1, c2 = st.columns([1,1])
+
+        with c1:
+            st.markdown("### Engine Stats")
+            st.markdown("- **Core:** DenseNet121 CNN\n- **Training Set:** 5,863 images")
+
+        with c2:
+            st.markdown("### Performance")
+            st.image("newplot.png")
+            
+
+        st.progress(99)
+        st.markdown("</div>", unsafe_allow_html=True)
+    st.markdown("</div>", unsafe_allow_html=True)
+
+
+    st.markdown("<div class='section-gap'></div>", unsafe_allow_html=True)
+    
+
     # Upload file section
-    uploaded_file = st.file_uploader(
-        "Upload Chest X-ray",
-        type = ['jpg', 'png', 'jpeg']
-    )
-
-    # If user uploaded the file
-    if uploaded_file:
-        st.image(uploaded_file, use_column_width=True)
-        
-        if st.button("PREDICT"):
-            with st.spinner("Analyzing scan..."):
-                time.sleep(2)
-                img = Image.open(uploaded_file).convert("RGB")
-                result, confidence = classify(img)
-
-                st.session_state.result = result
-                st.session_state.confidence = confidence
-                st.session_state.predicted = True
-                st.rerun()
+    st.markdown("<h2 style='text-align:center;'>Diagnostic Portal</h2>", unsafe_allow_html=True)
+    _, center_col, _ = st.columns([1,2,1])
+    with center_col:
+        uploaded_file = st.file_uploader("Drop Scan to Initialize", type=["jpg","png","jpeg"])
+        if uploaded_file:
+            st.image(uploaded_file, width=500)
+            if st.button("PREDICT"):
+                with st.spinner("Decoding Neural Layers..."):
+                    time.sleep(2)
+                    img = Image.open(uploaded_file).convert("RGB")
+                    class_name, confidence = classify(img)
+                    st.session_state.result = class_name
+                    st.session_state.confidence = confidence
+                    st.session_state.predicted = True
+                    st.rerun()
 
 else:
     pass    # Results page
