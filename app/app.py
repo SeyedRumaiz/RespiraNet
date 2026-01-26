@@ -17,7 +17,8 @@ def load_css(file):
     with open(file) as f:
         st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-load_css("/Users/seyedrumaiz/Documents/Pneumonia/app/styles.css")
+load_css("styles.css")
+
 
 # Initialize session state
 if "predicted" not in st.session_state:
@@ -47,15 +48,15 @@ if not st.session_state.predicted:
     s1, a1, s2, a2, s3 = st.columns([2,2,2,2,2])
 
     with s1:
-        st.markdown("<div class='step-node'>1</div><p><b>Upload</b></p>", unsafe_allow_html=True)
+        st.markdown("<div class='step-node'>1</div><p class='internal-text'><b>Upload</b></p>", unsafe_allow_html=True)
     with a1:
         st.markdown("<div class='connector'>────➤</div>", unsafe_allow_html=True)
     with s2:
-        st.markdown("<div class='step-node'>2</div><p><b>Analyze</b></p>", unsafe_allow_html=True)
+        st.markdown("<div class='step-node'>2</div><p class='internal-text'><b>Analyze</b></p>", unsafe_allow_html=True)
     with a2:
         st.markdown("<div class='connector'>────➤</div>", unsafe_allow_html=True)
     with s3:
-        st.markdown("<div class='step-node'>3</div><p><b>Results</b></p>", unsafe_allow_html=True)
+        st.markdown("<div class='step-node'>3</div><p class='internal-text'><b>Results</b></p>", unsafe_allow_html=True)
 
 
     st.markdown("<div class='section-gap'></div>", unsafe_allow_html=True)

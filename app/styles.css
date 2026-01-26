@@ -3,8 +3,6 @@
     color: #FFFFFF
 }
 
-
-/* Spacing*/
 .spacer {
     height:100px;
 }
@@ -50,7 +48,7 @@
     background: #161b22;
     margin: auto;
     z-index: 2;
-    margin-top: 90px;
+    margin-top: 70px;
 }
 
 .connector {
@@ -59,6 +57,16 @@
     color: #00D4FF;
     width: 120%;
     margin-left: -10%;
-    margin-top: 90px;
+    margin-top: 70px;
     animation: pulse 2s infinite;
+}
+
+.internal-text {
+    text-align: center;
+}
+
+@keyframes pulse {
+    0% {opacity: 0.5; transform: scale(1);}
+    50% {opacity: 1; transform: scale(1.1);}
+    100% {opacity: 0.5; transform: scale(1);}
 }
