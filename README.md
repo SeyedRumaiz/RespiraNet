@@ -2,7 +2,7 @@
 
 ## 📋 Project Overview
 A comprehensive **deep learning pipeline** for automated detection of **pneumonia from chest X-ray images**.  
-The project covers **EDA, preprocessing, data augmentation, multiple CNN-based models**, and a **Streamlit web application** for real-time predictions.
+The project covers **EDA, preprocessing, data augmentation, a DenseNet121 model, Explainability AI (Grad-CAM & SHAP)*, and a **Streamlit web application** for real-time predictions.
 
 ---
 
@@ -18,6 +18,28 @@ The project covers **EDA, preprocessing, data augmentation, multiple CNN-based m
 - **Use Case:** AI-assisted pneumonia detection
 
 ---
+
+---
+
+## 🖥️ Frontend & User Interface
+- **Web App:** Built with **Streamlit** for interactive real time predictions
+- **Design & Prototyping:** UI/UX designed in **Figma**
+- **Styling:** Custom **CSS** for layout, colors, and responsiveness
+
+---
+
+## 📄 Report & Documentation
+- **Report Format:** LaTeX, created and compiled on **Overleaf**
+- Includes: project overview, methodology, model explanation, metrics, visualizations, and results
+
+---
+
+## 💻 Tech Stack
+- **Backend / Model:** Python, TensorFlow, Keras, NumPy, OpenCV, Matplotlib
+- **Frontend / Visualization:** Streamlit, CSS, Figma
+- **Explainable AI:** Grad-CAM, SHAP
+- **Documentation:** LaTeX (Overleaf)
+
 
 ## 🚀 Quick Start
 
