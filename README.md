@@ -19,8 +19,6 @@ The project covers **EDA, preprocessing, data augmentation, a DenseNet121 model,
 
 ---
 
----
-
 ## 🖥️ Frontend & User Interface
 - **Web App:** Built with **Streamlit** for interactive real time predictions
 - **Design & Prototyping:** UI/UX designed in **Figma**
