@@ -13,7 +13,20 @@ if "predicted" not in st.session_state:
     st.session_state.accuracy = None
     st.session_state.location = None
 
-# Use the CSS file
-with open("styles.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+if not st.session_state.predicted:
+    pass    # Navigation page
 
+else:
+    pass    # Results page
+
+
+# Use the CSS file
+def load_css(file):
+    """
+    Used to load a specific CSS file into the app
+    
+    Paramaters
+        file: The CSS file being loaded
+    """
+    with open(file) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
