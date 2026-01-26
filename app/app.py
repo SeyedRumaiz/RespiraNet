@@ -6,6 +6,19 @@ from PIL import Image
 # Setup config
 st.set_page_config(page_title='RespiraNet', layout='wide')  # page_icon=""
 
+# Use the CSS file
+def load_css(file):
+    """
+    Used to load a specific CSS file into the app
+    
+    Paramaters
+        file: The CSS file being loaded
+    """
+    with open(file) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+load_css("/Users/seyedrumaiz/Documents/Pneumonia/app/styles.css")
+
 # Initialize session state
 if "predicted" not in st.session_state:
     st.session_state.predicted = False
@@ -17,12 +30,14 @@ if "predicted" not in st.session_state:
 
 if not st.session_state.predicted:
 
+    st.markdown("<div class='spacer'></div>", unsafe_allow_html=True)
+
     # Introduction section
     st.markdown("<h1 class='brand-title'>RespiraNet</h1>", unsafe_allow_html=True)
 
-    st.markdown("<h1>AI-Based Pneumonia Detection System</h1>", unsafe_allow_html=True)
+    st.markdown("<h3 class='hero-title'>AI-Based Pneumonia Detection System</h3>", unsafe_allow_html=True)
 
-    st.markdown("<p>Next-generation diagnostic framework</p>", unsafe_allow_html=True)
+    st.markdown("<p class='intro-text'>Next-generation diagnostic framework</p>", unsafe_allow_html=True)
 
 
     # How it works section
@@ -65,22 +80,3 @@ if not st.session_state.predicted:
 
 else:
     pass    # Results page
-
-
-# Use the CSS file
-def load_css(file):
-    """
-    Used to load a specific CSS file into the app
-    
-    Paramaters
-        file: The CSS file being loaded
-    """
-    with open(file) as f:
-        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-
-
-def main():
-    load_css("styles.css")
-
-if __name__ == "__main__":
-    main()

@@ -3,18 +3,32 @@
     color: #FFFFFF
 }
 
+
 /* Spacing*/
 .spacer {
     height:100px;
 }
 
-/* .section-gap {
+.section-gap {
     margin-top: 100px;
     margin-bottom: 50px;
-} */
+}
 
-.brand-title {
+.stMarkdown h1.brand-title {
     text-align: center;
     color: #00D4FF;
     letter-spacing: 2px;
 }
+
+.stMarkdown h3.hero-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 800;
+}
+
+.stMarkdown p.intro-text {
+    text-align: center;
+    font-size: 1.3rem;
+    color: #8b949e;
+}
+
