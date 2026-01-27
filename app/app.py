@@ -1,7 +1,10 @@
 import streamlit as st
 import time
 from model import classify
+from keras.models import load_model
 from PIL import Image
+
+model = load_model("../models/best_densenet.keras", compile=False)
 
 # Setup config
 st.set_page_config(page_title='RespiraNet', layout='wide')  # page_icon=""
@@ -93,7 +96,7 @@ if not st.session_state.predicted:
                 with st.spinner("Decoding Neural Layers..."):
                     time.sleep(2)
                     img = Image.open(uploaded_file).convert("RGB")
-                    class_name, confidence = classify(img)
+                    class_name, confidence = classify(img, model=model)
                     st.session_state.result = class_name
                     st.session_state.confidence = confidence
                     st.session_state.predicted = True
