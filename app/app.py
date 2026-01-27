@@ -28,7 +28,7 @@ if "predicted" not in st.session_state:
     st.session_state.predicted = False
     st.session_state.uploaded_file = False
     st.session_state.result = None
-    st.session_state.confidence = 0
+    st.session_state.confidence = None
 
 # Landing Page
 if not st.session_state.predicted:
@@ -112,7 +112,10 @@ else:
     with col1:
         st.markdown("<div class='result-card'>", unsafe_allow_html=True)
         st.markdown("### Primary Classification")
-        st.markdown(f"<h1 style='color:#00E676; font-size:4rem;'>{st.session_state.result}</h1>", unsafe_allow_html=True)
+        if st.session_state.result == "NORMAL":
+            st.markdown(f"<h1 style='color:#00E676; font-size:4rem;'>{st.session_state.result}</h1>", unsafe_allow_html=True)
+        else:
+            st.markdown(f"<h1 style='color:#FF0000; font-size:4rem;'>{st.session_state.result}</h1>", unsafe_allow_html=True)
         st.write("Scan analyzed by RespiraNet.")
         st.markdown("</div>", unsafe_allow_html=True)
     with col2:
@@ -121,7 +124,12 @@ else:
         confidence = st.session_state.confidence * 100
         st.markdown(f"<h1 style='color:#00D4FF; font-size:4rem;'>{confidence:.2f}%", unsafe_allow_html=True)
         st.progress(confidence/100)
-        st.write("The model is highly confident in this classification")
+        if st.session_state.confidence >= 0.8:
+            st.write("The model is highly confident in this classification")
+        elif st.session_state.confidence >= 0.6:
+             st.write("The model is moderately confident in this classification.")
+        else:
+            st.write("the model is uncertain. Consider further clinical evaluation.")
         st.markdown("</div>", unsafe_allow_html=True)
 
     with st.container():
