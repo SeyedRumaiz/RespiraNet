@@ -1,10 +1,10 @@
 import streamlit as st
 import time
-from model import classify
-from keras.models import load_model
+from model import classify, build_model, confidence_bar_chart
 from PIL import Image
 
-model = load_model("../models/best_densenet.keras", compile=False)
+model = build_model()
+model.load_weights("../models/best_densenet.weights.h5")
 
 # Setup config
 st.set_page_config(page_title='RespiraNet', layout='wide')  # page_icon=""
@@ -131,6 +131,7 @@ else:
         else:
             st.write("the model is uncertain. Consider further clinical evaluation.")
         st.markdown("</div>", unsafe_allow_html=True)
+    confidence_bar_chart(st.session_state.confidence)
 
     with st.container():
         left, _ = st.columns([1,5])

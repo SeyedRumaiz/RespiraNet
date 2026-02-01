@@ -71,3 +71,23 @@
     50% {opacity: 1; transform: scale(1.1);}
     100% {opacity: 0.5; transform: scale(1);}
 }
+
+div.stButton > button:first-child {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50% !important;
+    width: 160px !important;
+    height: 160px !important;
+    background-color: #00D4FF !important;
+    color: #000 !important;
+    font-weight: bold !important;
+    font-size: 22px !important;
+    border: 4px solid #FFFFFF !important;
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
+    transition: 0.4s;
+}
+
+div.stButton > button:hover {
+    transform: scale(1.1) rotate(5deg);
+    background-color: #FFFFFF !important;
+}
