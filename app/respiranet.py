@@ -1,14 +1,21 @@
 import streamlit as st
 import time
 from PIL import Image
+<<<<<<< HEAD
 import os
+=======
+>>>>>>> 38ad29cbb93b0d773575530010caa55634c3abef
 
 
 class RespiraNetApp:
     def __init__(self, model, confidence_plot):
         self.model = model
         self.confidence_plot = confidence_plot
+<<<<<<< HEAD
         self.load_css(os.path.join(os.path.dirname(__file__), "styles.css"))
+=======
+        self.load_css("styles.css")
+>>>>>>> 38ad29cbb93b0d773575530010caa55634c3abef
         self.setup_page()
         self.init_session_state()
 
