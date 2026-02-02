@@ -44,15 +44,18 @@ class RespiraNetApp:
         s1, a1, s2, a2, s3 = st.columns([2,2,2,2,2])
 
         with s1:
-            st.markdown("<div class='step-node'>1</div><p class='internal-text'><b>Upload</b></p>", unsafe_allow_html=True)
+            st.markdown("<div class='step-container'><div class='step-node'>1</div><p class='internal-text'><b>Upload</b></p>" \
+            "<p class='step-desc'>Upload a chest X-ray image for analysis.</p></div>", unsafe_allow_html=True)
         with a1:
             st.markdown("<div class='connector'>────➤</div>", unsafe_allow_html=True)
         with s2:
-            st.markdown("<div class='step-node'>2</div><p class='internal-text'><b>Analyze</b></p>", unsafe_allow_html=True)
+            st.markdown("<div class='step-container'><div class='step-node'>2</div><p class='internal-text'><b>Analyze</b></p>" \
+            "<p class='step-desc'>AI model extracts deep visual features.</p></div>", unsafe_allow_html=True)
         with a2:
             st.markdown("<div class='connector'>────➤</div>", unsafe_allow_html=True)
         with s3:
-            st.markdown("<div class='step-node'>3</div><p class='internal-text'><b>Results</b></p>", unsafe_allow_html=True)
+            st.markdown("<div class='step-container'><div class='step-node'>3</div><p class='internal-text'><b>Results</b></p>" \
+            "<p class='step-desc'>Prediction with confidence score is generated.</p></div>", unsafe_allow_html=True)
 
 
         st.markdown("<div class='section-gap'></div>", unsafe_allow_html=True)
@@ -66,7 +69,8 @@ class RespiraNetApp:
 
             with c1:
                 st.markdown("### Engine Stats")
-                st.markdown("- **Core:** DenseNet121 CNN\n- **Training Set:** 5,863 images")
+                st.markdown("- **Core:** DenseNet121 CNN\n- **Training Set:** 5,863 images" \
+                "\n - **Output**: Binary Classification\n- **Activation**: Sigmoid")
 
             with c2:
                 st.markdown("### Performance")
