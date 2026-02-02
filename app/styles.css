@@ -3,15 +3,13 @@
     color: #FFFFFF
 }
 
-
-/* Spacing*/
 .spacer {
     height:100px;
 }
 
 .section-gap {
-    margin-top: 100px;
-    margin-bottom: 50px;
+    margin-top: 200px;
+    margin-bottom: 100px;
 }
 
 .stMarkdown h1.brand-title {
@@ -24,6 +22,7 @@
     text-align: center;
     font-size: 2.5rem;
     font-weight: 800;
+    color: #FFFFFF;
 }
 
 .stMarkdown p.intro-text {
@@ -32,3 +31,63 @@
     color: #8b949e;
 }
 
+.stMarkdown h2.how-it-works {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.step-node {
+    border: 3px solid #00D4FF;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    background: #161b22;
+    margin: auto;
+    z-index: 2;
+    margin-top: 70px;
+}
+
+.connector {
+    text-align: center;
+    font-size: 50px;
+    color: #00D4FF;
+    width: 120%;
+    margin-left: -10%;
+    margin-top: 70px;
+    animation: pulse 2s infinite;
+}
+
+.internal-text {
+    text-align: center;
+}
+
+@keyframes pulse {
+    0% {opacity: 0.5; transform: scale(1);}
+    50% {opacity: 1; transform: scale(1.1);}
+    100% {opacity: 0.5; transform: scale(1);}
+}
+
+div.stButton > button:first-child {
+    display: block;
+    margin: 0 auto;
+    border-radius: 50% !important;
+    width: 160px !important;
+    height: 160px !important;
+    background-color: #00D4FF !important;
+    color: #000 !important;
+    font-weight: bold !important;
+    font-size: 22px !important;
+    border: 4px solid #FFFFFF !important;
+    box-shadow: 0 0 25px rgba(0, 212, 255, 0.5);
+    transition: 0.4s;
+}
+
+div.stButton > button:hover {
+    transform: scale(1.1) rotate(5deg);
+    background-color: #FFFFFF !important;
+}
