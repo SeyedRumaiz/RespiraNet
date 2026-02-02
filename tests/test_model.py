@@ -1,17 +1,13 @@
 import pytest
 import os
 import sys
-<<<<<<< HEAD
 import streamlit as st
-=======
->>>>>>> 38ad29cbb93b0d773575530010caa55634c3abef
 
 # First add project root to sys.path
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from PIL import Image
 import numpy as np
 from app.model import DenseNetModel121
-<<<<<<< HEAD
 from app.respiranet import RespiraNetApp
 
 class DummyModel:
@@ -26,9 +22,6 @@ class DummyConfidencePlot:
 @pytest.fixture
 def dummy_app():
     return RespiraNetApp(DummyModel(), DummyConfidencePlot())
-=======
-
->>>>>>> 38ad29cbb93b0d773575530010caa55634c3abef
 
 def create_dummy_image():
     return Image.fromarray(np.random.randint(0, 255, (224, 224, 3), dtype=np.uint8))
@@ -57,7 +50,6 @@ def test_predict(model):
     img = create_dummy_image()
     label, prob = model.predict(img)
     assert isinstance(label, str)
-<<<<<<< HEAD
     assert isinstance(prob, float)
 
 def test_init_session_state(dummy_app):
@@ -74,6 +66,3 @@ def test_render_results(dummy_app):
     st.session_state.result = "NORMAL"
     st.session_state.confidence = 0.75
     dummy_app.render_results()
-=======
-    assert isinstance(prob, float)
->>>>>>> 38ad29cbb93b0d773575530010caa55634c3abef
