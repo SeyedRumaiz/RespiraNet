@@ -1,6 +1,6 @@
 from model import DenseNetModel121
 from visualizations import ConfidenceBarChart
-from respira_net import RespiraNetApp
+from app.respiranet import RespiraNetApp
 import streamlit as st
 
 model = DenseNetModel121("../models/best_densenet.weights.h5")
