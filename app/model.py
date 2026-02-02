@@ -1,5 +1,6 @@
 import numpy as np
 from PIL import Image, ImageOps
+from typing import final
 from abc import ABC, abstractmethod
 from tensorflow.keras.applications import DenseNet121
 from tensorflow.keras.models import Sequential
@@ -7,6 +8,12 @@ from tensorflow.keras.layers import GlobalAveragePooling2D, Dense, BatchNormaliz
 
 
 class Model(ABC):
+    @final
+    def run(self, image: Image.Image):
+        data = self.preprocess(image)
+        self.build_model()
+        return self.predict(data)
+
     @abstractmethod
     def preprocess(self, image: Image.Image) -> np.ndarray:
         pass
