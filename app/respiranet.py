@@ -1,13 +1,13 @@
 import streamlit as st
 import time
 from PIL import Image
+from visualizations import plot_pie_chart
 import os
 
 
 class RespiraNetApp:
-    def __init__(self, model, confidence_plot):
+    def __init__(self, model):
         self.model = model
-        self.confidence_plot = confidence_plot
         self.load_css(os.path.join(os.path.dirname(__file__), "styles.css"))
         self.setup_page()
         self.init_session_state()
@@ -23,7 +23,7 @@ class RespiraNetApp:
 
 
     def setup_page(self):
-        st.set_page_config(page_title='RespiraNet', layout='wide')  # page_icon=""
+        st.set_page_config(page_title='RespiraNet', layout='wide')
 
 
     def rending_landing(self):
@@ -88,7 +88,6 @@ class RespiraNetApp:
                 st.image(uploaded_file, width=500)
                 if st.button("PREDICT"):
                     with st.spinner("Decoding Neural Layers..."):
-                        time.sleep(2)
                         img = Image.open(uploaded_file).convert("RGB")
                         class_name, confidence = self.model.run(img)
                         st.session_state.result = class_name
@@ -129,7 +128,22 @@ class RespiraNetApp:
             else:
                 st.write("the model is uncertain. Consider further clinical evaluation.")
             st.markdown("</div>", unsafe_allow_html=True)
-        self.confidence_plot.plot(st.session_state.confidence)
+        plot_pie_chart(st.session_state.confidence)
+        report_text = f"""
+        RespiraNet Diagnostic Report
+        ----------------------------
+
+        Result:         {st.session_state.result}
+        Confidence:     {st.session_state.confidence * 100:.2f}%
+        Timestamp:      {time.strftime('%Y-%m-%d %H:%M:%S')}
+        """
+        st.download_button(
+            label="📄 Export Report",
+            data=report_text,
+            file_name="respiranet_report.txt",
+            mime="text/plain",
+            key="export-btn"
+        )
 
         with st.container():
             left, _ = st.columns([1,5])

@@ -1,19 +1,12 @@
-from abc import ABC, abstractmethod
 import pandas as pd
 import streamlit as st
+import plotly.express as px
 
-class Visualizer(ABC):
-    @abstractmethod
-    def plot(self, *args, **kwargs):
-        pass
-
-
-class ConfidenceBarChart(Visualizer):
-    def plot(self, confidence: float):
-        """
-        Plots confidence for NORMAL vs PNEUMONIA
-        """
-        
-        probs = {"NORMAL": 1-confidence, "PNEUMONIA": confidence}
-        df = pd.DataFrame(list(probs.items()), columns=["Class", "Probability"])
-        st.bar_chart(df.set_index("Class"))
+def plot_pie_chart(confidence: float):
+    df = pd.DataFrame({
+    "Class": ["NORMAL", "PNEUMONIA"],
+    "Probability": [1-confidence, confidence]
+    })
+    fig = px.pie(df, names='Class', values='Probability', 
+                color='Class', color_discrete_map={'NORMAL':'#00E676','PNEUMONIA':'#FF1744'})
+    st.plotly_chart(fig)

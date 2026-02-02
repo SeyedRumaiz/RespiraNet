@@ -8,10 +8,14 @@ from tensorflow.keras.layers import GlobalAveragePooling2D, Dense, BatchNormaliz
 
 
 class Model(ABC):
+    def __init__(self):
+        self.__model = None
+
     @final
     def run(self, image: Image.Image):
+        if self.__model is None:
+            self.__model = self.build_model()
         data = self.preprocess(image)
-        self.build_model()
         return self.predict(data)
 
     @abstractmethod
@@ -23,14 +27,19 @@ class Model(ABC):
         pass
 
     @abstractmethod
-    def predict(self, image: Image.Image):
+    def predict(self, data: np.ndarray):
         pass
+
+
+    @property
+    def model(self):
+        return self.__model
 
 
 class DenseNetModel121(Model):
     def __init__(self, weights_path: str) -> None:
-        self.__model = self.build_model()
-        self.__model.load_weights(weights_path)
+        super().__init__()
+        self.weights_path = weights_path
 
 
     def preprocess(self, image: Image.Image) -> np.ndarray:
@@ -58,20 +67,19 @@ class DenseNetModel121(Model):
             Dropout(0.3),
             Dense(1, activation='sigmoid')  # binary classification
         ])
+
+        if hasattr(self, "weights_path") and self.weights_path:
+            model.load_weights(self.weights_path)
+
         return model
     
 
-    def predict(self, image: Image.Image):
-        data = self.preprocess(image)
-        prediction = self.__model.predict(data, verbose=0)
+    def predict(self, data: np.ndarray):
+        prediction = self.model.predict(data, verbose=0)
         prob = float(prediction[0][0])
 
         if prob >= 0.5:
             return "PNEUMONIA", prob
         else:
             return "NORMAL", 1 - prob
-        
 
-    @property
-    def model(self):
-        return self.__model
