@@ -1,10 +1,11 @@
 import streamlit as st
 import time
-from model import classify, build_model, confidence_bar_chart
+from model import DenseNetModel121
+from visualizations import ConfidenceBarChart
 from PIL import Image
 
-model = build_model()
-model.load_weights("../models/best_densenet.weights.h5")
+model = DenseNetModel121("../models/best_densenet.weights.h5")
+confidence_plot = ConfidenceBarChart()
 
 # Setup config
 st.set_page_config(page_title='RespiraNet', layout='wide')  # page_icon=""
@@ -96,7 +97,7 @@ if not st.session_state.predicted:
                 with st.spinner("Decoding Neural Layers..."):
                     time.sleep(2)
                     img = Image.open(uploaded_file).convert("RGB")
-                    class_name, confidence = classify(img, model=model)
+                    class_name, confidence = model.predict(img)
                     st.session_state.result = class_name
                     st.session_state.confidence = confidence
                     st.session_state.predicted = True
@@ -131,7 +132,7 @@ else:
         else:
             st.write("the model is uncertain. Consider further clinical evaluation.")
         st.markdown("</div>", unsafe_allow_html=True)
-    confidence_bar_chart(st.session_state.confidence)
+    confidence_plot.plot(st.session_state.confidence)
 
     with st.container():
         left, _ = st.columns([1,5])
