@@ -11,6 +11,7 @@ class Model(ABC):
     def __init__(self):
         self.__model = None
 
+
     @final
     def run(self, image: Image.Image):
         if self.__model is None:
@@ -18,13 +19,16 @@ class Model(ABC):
         data = self.preprocess(image)
         return self.predict(data)
 
+
     @abstractmethod
     def preprocess(self, image: Image.Image) -> np.ndarray:
         pass
 
+
     @abstractmethod
     def build_model(self):
         pass
+
 
     @abstractmethod
     def predict(self, data: np.ndarray):
@@ -82,4 +86,3 @@ class DenseNetModel121(Model):
             return "PNEUMONIA", prob
         else:
             return "NORMAL", 1 - prob
-

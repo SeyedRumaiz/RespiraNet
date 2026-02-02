@@ -8,7 +8,7 @@ import os
 class RespiraNetApp:
     def __init__(self, model):
         self.model = model
-        self.load_css(os.path.join(os.path.dirname(__file__), "styles.css"))
+        self.load_css(os.path.join(os.path.dirname(__file__), "../stylesheets/styles.css"))
         self.setup_page()
         self.init_session_state()
 
