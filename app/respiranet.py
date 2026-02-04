@@ -3,11 +3,11 @@ import time
 from PIL import Image
 from visualizations import plot_pie_chart
 import os
+from api_client import predict_image
 
 
 class RespiraNetApp:
-    def __init__(self, model):
-        self.model = model
+    def __init__(self):
         self.load_css(os.path.join(os.path.dirname(__file__), "../stylesheets/styles.css"))
         self.setup_page()
         self.init_session_state()
@@ -92,10 +92,9 @@ class RespiraNetApp:
                 st.image(uploaded_file, width=500)
                 if st.button("PREDICT"):
                     with st.spinner("Decoding Neural Layers..."):
-                        img = Image.open(uploaded_file).convert("RGB")
-                        class_name, confidence = self.model.run(img)
-                        st.session_state.result = class_name
-                        st.session_state.confidence = confidence
+                        result = predict_image(uploaded_file)
+                        st.session_state.result = result['label']
+                        st.session_state.confidence = result['confidence']
                         st.session_state.predicted = True
                         st.rerun()
         st.markdown("<div class='section-gap'></div>", unsafe_allow_html=True)
