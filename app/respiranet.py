@@ -1,6 +1,5 @@
 import streamlit as st
 import time
-from PIL import Image
 from visualizations import plot_pie_chart
 import os
 from api_client import predict_image

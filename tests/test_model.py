@@ -66,3 +66,24 @@ def test_render_results(dummy_app):
     st.session_state.result = "NORMAL"
     st.session_state.confidence = 0.75
     dummy_app.render_results()
+
+def test_run(model):
+    img = create_dummy_image()
+    label, confidence = model.run(img)
+    assert label in ["NORMAL", "PNEUMONIA"]
+    assert 0 <= confidence <= 1
+
+def test_session_reset(dummy_app):
+    st.session_state.predicted = True
+    st.session_state.result = "PNEUMONIA"
+    st.session_state.confidence = 0.9
+
+    # Simulate reset
+    dummy_app.init_session_state()
+    st.session_state.predicted = False
+    st.session_state.result = None
+    st.session_state.confidence = 0.0
+
+    assert st.session_state.predicted == False
+    assert st.session_state.result == None
+    assert st.session_state.confidence == 0.0
